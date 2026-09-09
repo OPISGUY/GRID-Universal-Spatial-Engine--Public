@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GRID — the index for everywhere</title>
+<meta name="description" content="A persistent address for every place on Earth, and one engine for modelling what happens there.">
+<meta property="og:title" content="GRID — the index for everywhere">
+<meta property="og:description" content="A persistent address for every place on Earth, and one engine for modelling what happens there.">
+<meta name="theme-color" content="#06080a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/grid.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2306080a'/%3E%3Cpath d='M7 7h7v7H7zM18 18h7v7h-7z' fill='%23ffb020'/%3E%3Cpath d='M18 7h7v7h-7zM7 18h7v7H7z' fill='%234fc9d9'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="brand" href="./">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="brandname">GRID</span>
+  </a>
+  <nav>
+    <a href="#layers">System</a>
+    <a href="#runs">Capability</a>
+    <a href="#status">Status</a>
+    <a class="nav-cta" href="access.html">Work with us</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="globe" id="stage" aria-hidden="true"></div>
+
+  <p class="readout" id="hero-label" aria-hidden="true"></p>
+
+  <div class="hero-copy">
+    <p class="eyebrow">Spatial infrastructure</p>
+    <h1 class="display">Every place on Earth<span class="thin">gets an address that lasts</span></h1>
+    <p class="lede">One index for the planet, and one engine that models what
+    happens at each point on it — water, crowds, machines, cities. A code here
+    does not move when the world around it does.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#layers">What we're building</a>
+      <a class="btn" href="access.html">Open doors with us</a>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="strip-inner">
+      <div class="strip-cell">
+        <span class="strip-k">Hierarchy</span>
+        <span class="strip-v">Macro · Meso · Micro</span>
+      </div>
+      <div class="strip-cell">
+        <span class="strip-k">Adapters on one engine</span>
+        <span class="strip-v"><span class="sig">10</span> registered</span>
+      </div>
+      <div class="strip-cell">
+        <span class="strip-k">Format</span>
+        <span class="strip-v">GSF / GSF-T · open spec</span>
+      </div>
+      <div class="strip-cell">
+        <span class="strip-k">Status</span>
+        <span class="strip-v"><span class="sig">Pre-launch</span> · no public service</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="layers">
+  <div class="wrap">
+    <p class="eyebrow">The system</p>
+    <h2 class="display">Three layers. None of them works alone.</h2>
+
+    <ol class="stack">
+      <li>
+        <p class="num">01 / INDEX</p>
+        <div>
+          <h3>An address for everywhere — that survives</h3>
+          <p>A hierarchical code for any point on Earth, from region down to
+          doorway. Generating codes was never the hard part; the hard part is
+          that places change. Settlements grow, boundaries move, governments
+          turn over. GRID's codes carry a lifecycle, so a location keeps its
+          address through all of it instead of being reshuffled at the next
+          regeneration.</p>
+          <p class="aside">We call it the genesis lock. It is the most
+          differentiated thing we own, and the thing addressing procurements
+          discover they needed about two years too late.</p>
+        </div>
+      </li>
+      <li>
+        <p class="num">02 / FORMAT</p>
+        <div>
+          <h3>Scenes that stay queryable while compressed</h3>
+          <p>Ask a compressed 3D scene a question without unpacking it — one
+          street, one moment, one bounding box. The specification is published
+          openly, with independent reader implementations in Python and
+          JavaScript, so whoever builds on it can read their own data forever,
+          with or without us.</p>
+          <p class="aside">Open on purpose. A government that cannot read its
+          own address layer does not own it.</p>
+        </div>
+      </li>
+      <li>
+        <p class="num">03 / ADAPTERS</p>
+        <div>
+          <h3>Ten of them, against one index</h3>
+          <p>Addressing, flood, crowds, volumetric, worldgen, climate, medical,
+          robotics, splats, synthetic worlds. Because they share an index, a
+          result from one is addressable by the next — which is the part
+          competitors rebuild five times over.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="runs">
+  <div class="wrap">
+    <p class="eyebrow">Capability</p>
+    <h2 class="display">An address is only useful if something runs on it.</h2>
+    <p class="intro">Addressing is the floor, not the product. Every adapter
+    reads and writes against the same index, so the flood model knows which
+    buildings, the crowd model knows which streets, and the machine knows which
+    doorway.</p>
+
+    <div class="panels">
+      <article class="panel">
+        <canvas data-panel="addressing" aria-hidden="true"></canvas>
+        <div class="panel-meta">
+          <p class="panel-kind">Addressing</p>
+          <p>Resolve any point on Earth down a hierarchy to a code that persists
+          when the place around it changes.</p>
+        </div>
+      </article>
+      <article class="panel">
+        <canvas data-panel="flood" aria-hidden="true"></canvas>
+        <div class="panel-meta">
+          <p class="panel-kind">Flood</p>
+          <p>Water over real terrain, reported by the addresses it reaches
+          rather than by a grid square.</p>
+        </div>
+      </article>
+      <article class="panel">
+        <canvas data-panel="crowds" aria-hidden="true"></canvas>
+        <div class="panel-meta">
+          <p class="panel-kind">Crowds</p>
+          <p>Density and failure points on the real geometry of a real place,
+          before the gate opens rather than after.</p>
+        </div>
+      </article>
+      <article class="panel">
+        <canvas data-panel="robotics" aria-hidden="true"></canvas>
+        <div class="panel-meta">
+          <p class="panel-kind">Robotics</p>
+          <p>Train at a code in simulation, deploy to the same code in the
+          world, and the machine knows where it is standing.</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="foot-note">Six more adapters run on the same engine — volumetric,
+    worldgen, climate, medical, splats, synthetic worlds. These are diagrams of
+    what each one does, not readings from live data.</p>
+  </div>
+</section>
+
+<section class="section" id="status">
+  <div class="wrap">
+    <p class="eyebrow">Status</p>
+    <h2 class="display">Confident on capability. Exact on record.</h2>
+    <p class="intro">Those are different claims and we keep them apart, because
+    the second kind gets checked.</p>
+
+    <div class="ledger">
+      <div class="row">
+        <p class="fact">A complete national layer, generated for Nigeria —
+        8,809 wards, every one assigned a persistent code.</p>
+        <p class="qual">Built and validated in development. Not a live public
+        service, and we don't describe it as one.</p>
+      </div>
+      <div class="row">
+        <p class="fact">An open format specification, published, with
+        independent reader SDKs in Python and JavaScript.</p>
+        <p class="qual">Free to implement. That is the point of it.</p>
+      </div>
+      <div class="row">
+        <p class="fact">Ten adapters registered against one engine, sharing one
+        index and one set of compute kernels.</p>
+        <p class="qual">The engine is real and running. The hosted service is
+        still in build.</p>
+      </div>
+      <div class="row">
+        <p class="fact">Pointing the pipeline at a new country is days-to-weeks
+        of compute and engineering.</p>
+        <p class="qual">Against survey programmes that historically take years.
+        Benchmarks get published when they are independently measured, not
+        before.</p>
+      </div>
+    </div>
+
+    <p class="plain">We are pre-launch. No public service yet, and no customers
+    yet. We would rather tell you that now than have you find it out later —
+    the whole thesis is a system people can still trust in ten years, and that
+    starts with what we say in the first meeting.</p>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <p class="eyebrow">Outreach</p>
+    <h2 class="display">We're looking for people who can open doors.</h2>
+    <p>Governments, agencies, donors, operators, universities — anywhere a
+    national or city-scale spatial layer is being argued about, we want to be in
+    the room. If you know those rooms, there is a brief written for you.</p>
+    <a class="btn btn-primary" href="access.html">Read the promoter brief</a>
+    <p class="gated">Password protected. If you were sent here, you were sent the password.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="brandname">GRID</p>
+    <p>One index for everywhere.</p>
+    <p class="fine">The GSF and GSF-T formats are published openly under CC BY 4.0,
+    with MIT-licensed reader SDKs. The compression engine and compute kernels are
+    not open.</p>
+  </div>
+</footer>
+
+<script type="module" src="assets/globe.js"></script>
+<script type="module" src="assets/panels.js"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+/* GRID — industrial/technical register.
+   Committed dark: this category (defence, infrastructure, geospatial) is dark
+   by convention, so rather than a half-hearted two-theme palette every colour
+   is painted explicitly and the page holds on any host ground. */
+
+:root {
+  color-scheme: dark;
+
+  --void:    #06080a;      /* page */
+  --panel:   #0b0f13;
+  --panel-2: #11171d;
+  --line:    #1a232a;
+  --line-2:  #2b3742;
+
+  --ink:     #eef3f5;
+  --ink-2:   #97a6b1;
+  --ink-3:   #5f6f7b;
+
+  --signal:  #ffb020;      /* sodium/hi-vis: survey beacon, not a brand pastel */
+  --signal-d:#c97f00;
+  --data:    #4fc9d9;
+  --alert:   #ff6a3d;
+
+  --measure: 62ch;
+  --wide: 1240px;
+  --gutter: clamp(1.1rem, 0.5rem + 2.4vw, 3rem);
+
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+  --disp: "Archivo", "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; text-wrap: balance; font-family: var(--disp); }
+
+/* Wide-cut display type. The width axis is the whole point — it reads as
+   engineered rather than as a default grotesque. */
+.display {
+  font-variation-settings: "wdth" 112;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+a { color: var(--signal); text-underline-offset: 3px; }
+a:hover { color: #ffc75a; }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 0.5rem; top: 0.5rem; z-index: 99; background: var(--panel); padding: 0.6rem 1rem; }
+
+.wrap { max-width: var(--wide); margin-inline: auto; padding-inline: var(--gutter); }
+
+/* ── mono utility ─────────────────────────────────────────────── */
+.mono, .eyebrow, .kicker, .stat-k, .strip, .panel-kind, .readout, .ledger .qual {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--signal); margin: 0 0 1rem;
+}
+
+/* ── top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: relative; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  max-width: var(--wide); margin-inline: auto;
+  padding: 1.1rem var(--gutter);
+}
+.brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--ink); }
+.mark {
+  width: 16px; height: 16px; flex: none;
+  background:
+    linear-gradient(var(--signal), var(--signal)) 0 0 / 6px 6px no-repeat,
+    linear-gradient(var(--data), var(--data)) 10px 0 / 6px 6px no-repeat,
+    linear-gradient(var(--data), var(--data)) 0 10px / 6px 6px no-repeat,
+    linear-gradient(var(--signal), var(--signal)) 10px 10px / 6px 6px no-repeat;
+}
+.brandname {
+  font-family: var(--disp); font-weight: 700; font-size: 0.95rem;
+  letter-spacing: 0.22em; font-variation-settings: "wdth" 110;
+}
+.topbar nav { display: flex; align-items: center; gap: 1.6rem; }
+.topbar nav a {
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-2); text-decoration: none;
+}
+.topbar nav a:hover { color: var(--ink); }
+.nav-cta {
+  color: var(--void) !important; background: var(--signal);
+  padding: 0.5rem 0.9rem; font-weight: 500;
+}
+.nav-cta:hover { background: #ffc75a; color: var(--void) !important; }
+@media (max-width: 760px) { .topbar nav a:not(.nav-cta) { display: none; } }
+
+/* ── hero: the globe is the page, not an ornament ─────────────── */
+.hero {
+  position: relative;
+  min-height: min(86vh, 820px);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  margin-top: -68px; padding-top: 68px;      /* topbar sits over the globe */
+}
+.globe { position: absolute; inset: 0; z-index: 0; }
+.globe canvas { width: 100%; height: 100%; display: block; }
+/* keeps the headline legible over the brightest part of the sphere */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, var(--void) 0%, rgba(6,8,10,0.90) 30%, rgba(6,8,10,0.34) 52%, rgba(6,8,10,0.04) 78%),
+    linear-gradient(0deg, var(--void) 1%, transparent 22%);
+}
+@media (max-width: 860px) {
+  .hero::after {
+    background: linear-gradient(0deg, var(--void) 12%, rgba(6,8,10,0.82) 46%, rgba(6,8,10,0.55) 100%);
+  }
+}
+
+.hero-copy {
+  position: relative; z-index: 2;
+  max-width: var(--wide); margin-inline: auto; width: 100%;
+  padding: 0 var(--gutter) clamp(2rem, 4vw, 3.4rem);
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 1.2rem + 6.4vw, 5.8rem);
+  max-width: 11ch;
+}
+.hero h1 .thin {
+  display: block; margin-top: 0.55rem;
+  font-size: 0.46em; font-weight: 400;
+  font-variation-settings: "wdth" 104;
+  letter-spacing: -0.015em; line-height: 1.05;
+  color: var(--ink-2);
+}
+.lede {
+  max-width: 48ch; margin: 1.5rem 0 0;
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.15rem);
+  color: var(--ink-2);
+}
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2rem; }
+
+.btn {
+  display: inline-block; font-family: var(--mono);
+  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.8rem 1.4rem; border: 1px solid var(--line-2);
+  color: var(--ink); text-decoration: none; background: transparent;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.btn:hover { border-color: var(--signal); color: var(--signal); }
+.btn-primary { background: var(--signal); border-color: var(--signal); color: var(--void); font-weight: 500; }
+.btn-primary:hover { background: #ffc75a; border-color: #ffc75a; color: var(--void); }
+
+/* mission-control strip: the density the page was missing */
+.strip {
+  position: relative; z-index: 2;
+  border-top: 1px solid var(--line);
+  background: rgba(6,8,10,0.86);
+  backdrop-filter: blur(3px);
+}
+.strip-inner {
+  max-width: var(--wide); margin-inline: auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  font-size: 0.7rem; letter-spacing: 0.08em;
+}
+.strip-cell { padding: 0.85rem var(--gutter); border-left: 1px solid var(--line); }
+.strip-cell:first-child { border-left: 0; }
+.strip-k { display: block; color: var(--ink-3); text-transform: uppercase; }
+.strip-v { color: var(--ink); }
+.strip-v .sig { color: var(--signal); }
+@media (max-width: 760px) {
+  .strip-inner { grid-template-columns: repeat(2, 1fr); }
+  .strip-cell:nth-child(3) { border-left: 0; }
+  .strip-cell:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+
+.readout {
+  position: absolute; right: var(--gutter); bottom: 5.4rem; z-index: 3;
+  margin: 0; font-size: 0.72rem; letter-spacing: 0.14em;
+  text-align: right; line-height: 1.9;
+  padding-left: 0.9rem; border-left: 1px solid var(--line-2);
+}
+.readout .lvl { display: block; color: var(--signal); }
+.readout .code { color: var(--ink-2); }
+@media (max-width: 860px) { .readout { display: none; } }
+
+/* ── sections ─────────────────────────────────────────────────── */
+.section { padding: clamp(3.4rem, 7vw, 6.5rem) 0; border-bottom: 1px solid var(--line); }
+.section.tight { padding-block: clamp(2.6rem, 5vw, 4rem); }
+
+h2 {
+  font-size: clamp(1.7rem, 1.1rem + 2.6vw, 3.1rem);
+  max-width: 18ch;
+}
+h3 { font-family: var(--sans); font-size: 1rem; font-weight: 600; letter-spacing: 0; margin-bottom: 0.5rem; }
+.intro { max-width: var(--measure); color: var(--ink-2); margin: 1.2rem 0 0; }
+
+/* numbered layer stack — the numbering is real: each needs the one above */
+.stack { list-style: none; margin: 2.8rem 0 0; padding: 0; display: grid; gap: 0; }
+.stack li {
+  display: grid; grid-template-columns: 5rem 1fr; gap: 1.6rem;
+  padding: 1.8rem 0; border-top: 1px solid var(--line);
+}
+.stack .num {
+  font-family: var(--mono); font-size: 0.74rem; color: var(--signal);
+  letter-spacing: 0.1em; margin: 0.25rem 0 0;
+}
+.stack p { margin: 0 0 0.7rem; max-width: var(--measure); color: var(--ink-2); }
+.stack .aside { color: var(--ink-3); font-size: 0.92rem; border-left: 1px solid var(--line-2); padding-left: 1rem; margin-top: 1rem; }
+@media (max-width: 620px) { .stack li { grid-template-columns: 1fr; gap: 0.4rem; } }
+
+/* capability panels */
+.panels {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+  gap: 1px; background: var(--line); border: 1px solid var(--line);
+  margin-top: 2.4rem;
+}
+.panel { background: var(--panel); display: flex; flex-direction: column; }
+.panel canvas { display: block; width: 100%; aspect-ratio: 5 / 4; background: var(--void); }
+.panel-meta { padding: 1.1rem 1.15rem 1.3rem; }
+.panel-kind {
+  font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--signal); margin: 0 0 0.5rem;
+}
+.panel-meta p:not(.panel-kind) { color: var(--ink-2); font-size: 0.88rem; margin: 0; line-height: 1.55; }
+
+/* ledger: claim | the qualifier that keeps it exact */
+.ledger { margin-top: 2.6rem; border-top: 1px solid var(--line); }
+.ledger .row {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 2.4rem;
+  padding: 1.4rem 0; border-bottom: 1px solid var(--line);
+}
+.ledger .fact { margin: 0; font-size: 1.02rem; }
+.ledger .qual { margin: 0; color: var(--ink-3); font-size: 0.82rem; line-height: 1.6; }
+@media (max-width: 720px) { .ledger .row { grid-template-columns: 1fr; gap: 0.5rem; } }
+
+.plain { max-width: var(--measure); margin-top: 2.4rem; color: var(--ink-2); }
+.foot-note { color: var(--ink-3); font-size: 0.82rem; margin-top: 1.6rem; max-width: var(--measure); }
+
+/* ── closer ───────────────────────────────────────────────────── */
+.closer { padding: clamp(3.4rem, 7vw, 6rem) 0; border-bottom: 1px solid var(--line); }
+.closer h2 { max-width: 16ch; }
+.closer p { max-width: var(--measure); color: var(--ink-2); margin: 1.3rem 0 2.2rem; }
+.gated { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); margin-top: 1.2rem; letter-spacing: 0.06em; }
+
+.foot { padding: 2.6rem 0 3.6rem; }
+.foot p { margin: 0 0 0.4rem; color: var(--ink-3); font-size: 0.85rem; }
+.foot .brandname { color: var(--ink); }
+.foot .fine { margin-top: 1.2rem; max-width: var(--measure); font-size: 0.78rem; }
+
+/* ── access gate ──────────────────────────────────────────────── */
+.gate-page { display: grid; place-items: center; min-height: 76vh; padding: 2rem var(--gutter); }
+.gate { width: 100%; max-width: 28rem; background: var(--panel); border: 1px solid var(--line); padding: 2rem; }
+.gate h1 { font-family: var(--disp); font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 0.6rem; font-variation-settings: "wdth" 108; text-transform: uppercase; }
+.gate p { color: var(--ink-2); margin: 0 0 1.5rem; font-size: 0.94rem; }
+.gate label { display: block; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
+.gate input {
+  width: 100%; padding: 0.75rem 0.85rem; font-size: 1rem; font-family: var(--mono);
+  background: var(--void); color: var(--ink); border: 1px solid var(--line-2);
+}
+.gate input:focus-visible { border-color: var(--signal); }
+.gate .btn { width: 100%; margin-top: 1rem; text-align: center; cursor: pointer; }
+.gate .msg { margin: 1rem 0 0; font-size: 0.85rem; min-height: 1.2em; font-family: var(--mono); }
+.gate .msg.err { color: var(--alert); }
+
+.brief { max-width: 44rem; margin: 0 auto; padding: 2.5rem var(--gutter) 4rem; }
+.brief h1 { font-family: var(--disp); font-size: clamp(1.7rem,1.2rem+2vw,2.5rem); text-transform: uppercase; font-variation-settings: "wdth" 110; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+.brief h2 { font-size: 1.2rem; margin: 2.8rem 0 0.9rem; padding-top: 1.5rem; border-top: 1px solid var(--line); max-width: none; }
+.brief h3 { margin-top: 1.6rem; }
+.brief p, .brief li { max-width: var(--measure); color: var(--ink-2); }
+.brief strong { color: var(--ink); }
+.brief ol, .brief ul { padding-left: 1.2rem; }
+.brief li { margin-bottom: 0.6rem; }
+.brief .role { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em; color: var(--signal); text-transform: uppercase; }
+.brief .exact { background: var(--panel); border-left: 2px solid var(--signal); padding: 1.3rem 1.5rem; margin: 1.5rem 0; }
+.brief .exact h3 { margin-top: 0; }
+.brief .note { color: var(--ink-3); font-size: 0.9rem; }
