@@ -3,23 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Not found — GRID</title>
+<title>No index entry — GRID</title>
+<meta name="theme-color" content="#06080a">
+<!--
+  Self-contained on purpose. A 404 is served for any missing path, at any
+  depth, and on a GitHub project page the site is not at the domain root — so
+  an absolute /assets/… link 404s too and the error page arrives unstyled.
+  Inlining removes the dependency entirely.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap">
-<link rel="stylesheet" href="/assets/grid.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400&display=swap">
+<style>
+  :root { color-scheme: dark; --void:#06080a; --ink:#eef3f5; --ink-2:#97a6b1; --ink-3:#5f6f7b; --signal:#ffb020; --data:#4fc9d9; --line-2:#2b3742; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--void); color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    display: grid; grid-template-rows: auto 1fr; gap: 0;
+  }
+  header { display: flex; align-items: center; gap: 0.65rem; padding: 1.1rem clamp(1.1rem, 4vw, 3rem); }
+  .mark {
+    width: 16px; height: 16px;
+    background:
+      linear-gradient(var(--signal), var(--signal)) 0 0 / 6px 6px no-repeat,
+      linear-gradient(var(--data), var(--data)) 10px 0 / 6px 6px no-repeat,
+      linear-gradient(var(--data), var(--data)) 0 10px / 6px 6px no-repeat,
+      linear-gradient(var(--signal), var(--signal)) 10px 10px / 6px 6px no-repeat;
+  }
+  .brandname { font-family: "Archivo", sans-serif; font-weight: 700; letter-spacing: 0.22em; font-size: 0.95rem; }
+  main { display: grid; place-items: center; padding: 2rem clamp(1.1rem, 4vw, 3rem) 6rem; text-align: center; }
+  .code { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; letter-spacing: 0.24em; color: var(--signal); text-transform: uppercase; margin: 0 0 1.2rem; }
+  h1 {
+    font-family: "Archivo", sans-serif; font-weight: 700; text-transform: uppercase;
+    font-variation-settings: "wdth" 112; letter-spacing: -0.035em; line-height: 0.96;
+    font-size: clamp(2rem, 1.2rem + 4vw, 3.6rem); margin: 0; max-width: 16ch;
+  }
+  p.sub { color: var(--ink-2); margin: 1.2rem 0 2.2rem; max-width: 42ch; }
+  a.btn {
+    display: inline-block; font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.8rem 1.4rem; background: var(--signal); color: var(--void);
+    text-decoration: none; font-weight: 500;
+  }
+  a.btn:hover { background: #ffc75a; }
+  :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+</style>
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="/"><span class="mark" aria-hidden="true"></span><span class="brandname">GRID</span></a>
+<header>
+  <span class="mark" aria-hidden="true"></span>
+  <span class="brandname">GRID</span>
 </header>
-<main class="gate-page">
-  <div style="text-align:center">
-    <p class="eyebrow">404</p>
-    <h1 style="font-family:Archivo,sans-serif;font-size:clamp(1.6rem,1.2rem+2vw,2.4rem);letter-spacing:-0.02em">
-      No index entry for that address.</h1>
-    <p style="color:var(--ink-soft);margin:1rem 0 2rem">Which, given what we do, is a little embarrassing.</p>
-    <a class="btn btn-primary" href="/">Back to the site</a>
+<main>
+  <div>
+    <p class="code">404 · no index entry</p>
+    <h1>That address doesn't resolve</h1>
+    <p class="sub">Which, given what we do, is a little embarrassing. Nothing is
+    indexed at this path.</p>
+    <a class="btn" href="./">Back to the site</a>
   </div>
 </main>
 </body>
